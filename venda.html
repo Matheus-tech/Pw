@@ -1,0 +1,555 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Venda</title>
+
+
+
+
+</head>
+
+<body>
+  <!--menu-->
+  <div class="">
+    <nav class="navbar navbar-light" style="background-color: #f9d172; color: black;">
+        <nav class="navbar navbar-expand-lg navbar-light background-color #f9d172;">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(Página atual)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html">Livros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="venda.html">Compre aqui</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quemSomos.html">Quem Somos </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faleconosco.html">Fale Conosco</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </nav>
+</div>
+<!--menu-->
+  <div class="container-fluid">
+
+
+
+    <!--Script-->
+    <script type="text/javascript">
+      var valorTotal = 0;
+      var subTotal = 0;
+      var valorParc = 1;
+
+      function salvar() {
+        //txt
+        document.getElementById('txtNomeCliente').value = document.getElementById('txtNome').value.toUpperCase();
+        document.getElementById('txtCpf').value = document.getElementById('cpf').value;
+
+        //Radio button
+
+
+
+        var i;
+        for (i = 0; i < document.formVenda.rdEntrega.length; i++) {
+          if (document.formVenda.rdEntrega[i].checked) {
+            break;
+          }
+        }
+        if (parseInt(document.formVenda.rdEntrega[i].value) == 1) {
+          document.getElementById('txtEntregaSelec').value = "SEDEX - entrega em 7 dias ";
+          document.getElementById('txtValorFrete').value = "R$ 25.00";
+
+        } else if (parseInt(document.formVenda.rdEntrega[i].value) == 2) {
+          document.getElementById('txtEntregaSelec').value = "Correios - entrega em 20 dias";
+          document.getElementById('txtValorFrete').value = "R$ 10.00";
+        } else if (parseInt(document.formVenda.rdEntrega[i].value) == 3) {
+          document.getElementById('txtEntregaSelec').value = "Retirar na loja";
+          document.getElementById('txtValorFrete').value = "Não possui frete";
+        }
+
+
+        //select
+        var indice = document.formVenda.slcFormaPagto.selectedIndex;
+        document.getElementById('txtFormaSelec').value = document.getElementById('slcFormaPagto').value;
+        if (document.getElementById('txtFormaSelec').value == 1) {
+          document.getElementById('txtFormaSelec').value = "Transferencia";
+        } else if (document.getElementById('txtFormaSelec').value == 2) {
+          document.getElementById('txtFormaSelec').value = "Credito";
+        } else if (document.getElementById('txtFormaSelec').value == 3) {
+          document.getElementById('txtFormaSelec').value = "Boleto";
+        } else if (document.getElementById('txtFormaSelec').value == 4) {
+          document.getElementById('txtFormaSelec').value = "Debito";
+        }
+
+
+
+        //checkbox 
+
+        if (document.getElementById('ckNews').checked == true) {
+          alert('Você aceitou receber nossa novidades e promoções. Seja bem vindo');
+        } else {
+          alert('Você não aceitou receber nossa novidades, infelismente perderá nossos descontos.');
+        }
+
+
+      }
+
+      function addProduto() {
+        // seleciona  um elemento pela tag ou classe css 
+        // var tabela = document.querySelector('table');
+
+        var tabela = document.getElementById('tbProduto');
+
+
+
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+        var td5 = document.createElement("td");
+        var td6 = document.createElement("td");
+
+        var tr = document.createElement("tr");
+
+        var cod = parseInt(document.getElementById('codProduto').value);
+
+
+
+
+        //Começo switch
+        switch (cod) {
+          case 1:
+            var descricao = "Herói"
+            var preco = "R$ 25,50"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 25.50);
+            break;
+
+          case 2:
+            var descricao = "A Magia"
+            var preco = "R$ 22,00"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 21.90);
+            break;
+
+          case 3:
+            var descricao = "A lei da Atração"
+            var preco = "R$ 18,00"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 18);
+            break;
+
+          case 4:
+            var descricao = "It - A Coisa"
+            var preco = "R$ 74,30"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 74.30);
+            break;
+
+          case 5:
+            var descricao = "Ansiedade 2"
+            var preco = "R$ 16,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 16.90);
+            break;
+
+          case 6:
+            var descricao = "O Iluminado"
+            var preco = "R$ 49,30"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 49.30);
+            break;
+
+          case 7:
+            var descricao = "Batman: Ano 100 e outras Histórias "
+            var preco = "R$84,00 "
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 84.00);
+            break;
+
+          case 8:
+            var descricao = "Star Wars: Cidadela dos Gritos "
+            var preco = "R$ 23,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 23.90);
+            break;
+
+          case 9:
+            var descricao = "No Game No Life "
+            var preco = "R$ 24,00"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 24.00);
+            break;
+
+          case 10:
+            var descricao = "Naruto: The Last "
+            var preco = "R$ 35,90 "
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 35.90);
+            break;
+
+          case 11:
+            var descricao = "Reino do amanha "
+            var preco = "R$ 89,00"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 89.00);
+            break;
+
+          case 12:
+            var descricao = "Batman Noir: O Cavaleiro Das Trevas "
+            var preco = "R$ 59,50"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 59.50);
+            break;
+
+          case 13:
+            var descricao = "One Piece Ed.89"
+            var preco = "R$ 14,50"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 14.50);
+            break;
+
+          case 14:
+            var descricao = "One-Punch Man "
+            var preco = "R$ 39,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 39.90);
+            break;
+
+          case 15:
+            var descricao = "parasyte-vol 1 "
+            var preco = "R$ 10,10"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 10.10);
+            break;
+
+          case 16:
+            var descricao = "Fullmetal Alchemist vol 1"
+            var preco = "R$ 13,50"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 13.50);
+            break;
+
+          case 17:
+            var descricao = "Crise nas Infinitas Terras"
+            var preco = "R$ 98,60"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 98.60);
+            break;
+
+          case 18:
+            var descricao = "Flashpoint"
+            var preco = "R$ 54,30"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 54.30);
+            break;
+
+          case 19:
+            var descricao = "Guerras Secretas"
+            var preco = "R$ 80,70"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 80.70);
+            break;
+
+          case 20:
+            var descricao = "The Flash Vol. 8: Flash War"
+            var preco = "R$ 68,30"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 68.36);
+            break;
+
+          case 21:
+            var descricao = "A Voz do Silêncio Box"
+            var preco = "R$ 241,10"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 241.10);
+            break;
+
+          case 22:
+            var descricao = "Harry Potter Box"
+            var preco = "R$ 144,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 144.90);
+            break;
+
+          case 23:
+            var descricao = "Hellsing box"
+            var preco = "R$ 110,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 110.90);
+            break;
+
+          case 24:
+            var descricao = "Tokyo ghoul box"
+            var preco = "R$ 412,70"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 412.70);
+            break;
+
+          case 25:
+            var descricao = "God of War Novelization"
+            var preco = "R$ 60,70"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 60.70);
+            break;
+
+          case 26:
+            var descricao = "The Witcher: Volume 1"
+            var preco = "R$ 33,40"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 33.40);
+            break;
+
+          case 27:
+            var descricao = "Art of Horizon Zero Dawn "
+            var preco = "R$ 39,90"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 39.90);
+            break;
+
+          case 28:
+            var descricao = "The Legend of Zelda: Art"
+            var preco = "R$ 50,00"
+            var qtde = document.getElementById('qtde').value;
+            subTotal += (parseInt(qtde) * 50.00);
+            break;
+
+
+        }
+        //fim switch
+
+        var codNode = document.createTextNode(cod);
+        var descricaoNode = document.createTextNode(descricao);
+        var precoNode = document.createTextNode(preco);
+        var qtdeNode = document.createTextNode(qtde);
+        var subTotalNode = document.createTextNode(subTotal);
+
+        td1.appendChild(codNode);
+        td2.appendChild(descricaoNode);
+        td3.appendChild(precoNode);
+        td4.appendChild(qtdeNode);
+        td5.appendChild(subTotalNode);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+
+        tabela.appendChild(tr);
+
+        document.getElementById('codProduto').value = '';
+        document.getElementById('qtde').value = '';
+
+        document.getElementById('codProduto').focus();
+
+
+        valorTotal += subTotal;
+        //Valor das parcelas
+        valorParc = document.getElementById('Parcelas').value;
+        document.getElementById('valorParcelas').value = (valorTotal / valorParc);
+
+
+        document.getElementById('txtValorTotal').value = valorTotal;
+
+      }
+    </script>
+    <!--Script fim-->
+
+    <div class="formCompra">
+      <div class="form">
+
+        <form name='formVenda'>
+          <div class="form-row">
+            <div class="form-group col-md-6 for1">
+              <label class="collortxtForm" for="inputNome">Nome Completo</label>
+              <input type="text" class="form-control for1" id="txtNome" placeholder="Nome">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-group col-md-6 for2">
+              <label class="collortxtForm" for="inputPassword4">CPF</label>
+              <input type="text" class="form-control for2" id="cpf" placeholder="CPF">
+            </div>
+            <label class="collortxtForm" for="inputEmail4">Email</label>
+            <input type="email" class="form-control for3" id="inputEmail4" placeholder="Email">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="collortxtForm" for="inputCity">Cod.Produto</label>
+              <input type="text" class="form-control for4" id="codProduto" placeholder="Codigo do produto MAX:28">
+            </div>
+            <div class="form-group col-md-2">
+              <label class="collortxtForm" for="inputCEP">Quantidade</label>
+              <input type="text" class="form-control for5" id="qtde" placeholder="Quantidade">
+            </div>
+            <button type="button" value='add' class="btn btn-outline-success add" onclick="addProduto()">add</button>
+          </div>
+
+          </label>
+          <br>
+          <div class="collortxt">
+            <table border="1" id="tbProduto">
+              <thead>
+                <tr>
+
+                  <th>Codigo</th>
+                  <th>Titulo</th>
+                  <th>Valor do livro</th>
+                  <th>quantidade</th>
+                  <th>Sub Total</th>
+
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="form-group for11div">
+            <label class="collortxtForm" for="entrega">
+              <h5>Como deseja receber seus produtos:</h5>
+            </label>
+
+            <div class="form-group">
+              <div class="form-check">
+                <input type="radio" id="rdEntrega" name="rdEntrega" value="1">Correios SEDEX (R$25,00)<br>
+                <input type="radio" id="rdEntrega" name="rdEntrega" value="2" checked>Correios (R$10,00)<br>
+                <input type="radio" id="rdEntrega" name="rdEntrega" value="3">Retirar na loja (gratis)
+
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6 for12">
+              <label class="collortxtForm" for="inputPagamento">
+                <h5>Formas de Pagamento</h5>
+              </label>
+              <div class="form-row">
+                <div class="col pagt">
+                  <div class="form-check">
+                    <select name="slcFormaPagto" id="slcFormaPagto">
+                      <option value="1">Transferencia</option>
+                      <option value="2">Credito</option>
+                      <option value="3">Boleto</option>
+                      <option value="4">Debito</option>
+                    </select>
+                    <br>
+                  </div>
+                </div>
+                <br>
+
+                <label class="collortxtForm parc" for="inputNome ">
+                  <h5>Parcelas</h5>
+                </label>
+                <input type="text" class="form-control parc " id="Parcelas" placeholder="Parcelas">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="check">
+            <input type="checkbox" id="ckNews" class="checkbox" value="sim" checked> Eu aceito receber as novidades
+          </div>
+
+          <button type="button" value="Cadastrar" class="btn btn-outline-success cad"
+            onclick="salvar()">Comprar</button>
+
+          <br>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="formCompra2">
+      <div class="form">
+        <div class="finaliza">
+          <h1 class="title">Resumo da Compra</h1>
+          <br>
+
+          <label>
+            <div class="collortxtForm nNome">Cliente</div>
+          </label>
+          <input type="text" class="form-control nameNome" id="txtNomeCliente" name="txtNomeCliente" readonly='readonly'
+            value="">
+
+          <label>
+            <div class="collortxtForm ncpf">CPF</div>
+          </label>
+          <input type="text" class="form-control namecpf" id="txtCpf" name="txtCpf" readonly='readonly' value="">
+
+          <label>
+            <div class="collortxtForm nPagto">Forma pagamento</div>
+          </label>
+          <input type="text" class="form-control namePagto" id="txtFormaSelec" name="txtFormaSelec" readonly='readonly'
+            value="">
+
+          <label>
+            <div class="collortxtForm nEntrega">Entrega selecionada</div>
+          </label>
+          <input type="text" class="form-control nameEntrega" id="txtEntregaSelec" name="txtEntregaSelec"
+            readonly='readonly' value="">
+
+          <label>
+            <div class="collortxtForm nParcela">Valor Parcelas</div>
+          </label>
+          <input type="text" class="form-control nameParcela" id="valorParcelas" name="valorParcelas"
+            readonly='readonly' value="">
+
+          <label>
+            <div class="collortxtForm nVenda">Total venda</div>
+          </label>
+          <input type="text" class="form-control nameVenda" id="txtValorTotal" name="txtValorTotal" readonly='readonly'
+            value="">
+          <br>
+          <label>
+            <div class="collortxtForm nFrete">Valor Frete</div>
+          </label>
+          <input type="text" class="form-control nameFrete" id="txtValorFrete" name="txtValorFrete" readonly='readonly'
+            value="">
+          <br>
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

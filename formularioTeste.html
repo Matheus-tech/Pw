@@ -1,0 +1,191 @@
+<html>
+
+<head>
+    <title>teste </title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var valorTotal = 0;
+
+      function salvar(){
+          var i;
+          for(i=0; i<document.formVenda.rdEntrega.length; i++){
+              if(document.formVenda.rdEntrega[i].checked){
+                  break;
+              }
+          }
+          if(parseInt(document.formVenda.rdEntrega[i].value)==1){
+              document.getElementById('txtEntregaSelec').value = "Correios ";
+              
+          }else if(parseInt(document.formVenda.rdEntrega[i].value)==2){
+              document.getElementById('txtEntregaSelec').value = "sedex";
+          }
+      }
+       
+        
+    </script>
+
+
+<div class="formCompra">
+        <div class="form">
+  
+          <form name='formVenda'>
+            <div class="form-row">
+              <div class="form-group col-md-6 for1">
+                <label class="collortxtForm" for="inputNome">Nome Completo</label>
+                <input type="text" class="form-control for1" id="txtNome" placeholder="Nome">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-group col-md-6 for2">
+                <label class="collortxtForm" for="inputPassword4">CPF</label>
+                <input type="text" class="form-control for2" id="cpf" placeholder="CPF">
+              </div>
+              <label class="collortxtForm" for="inputEmail4">Email</label>
+              <input type="email" class="form-control for3" id="inputEmail4" placeholder="Email">
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label class="collortxtForm" for="inputCity">Cod.Produto</label>
+                <input type="text" class="form-control for4" id="codProduto" placeholder="Codigo do produto MAX:28">
+              </div>
+              <div class="form-group col-md-2">
+                <label class="collortxtForm" for="inputCEP">Quantidade</label>
+                <input type="text" class="form-control for5" id="qtde" placeholder="Quantidade">
+              </div>
+              <button type="button" value='add' class="btn btn-outline-success add" onclick="addProduto()">add</button>
+            </div>
+  
+            </label>
+            <br>
+            <div class="collortxt">
+              <table border="1" id="tbProduto">
+                <thead>
+                  <tr>
+  
+                    <th>Codigo</th>
+                    <th>Titulo</th>
+                    <th>Valor do livro</th>
+                    <th>quantidade</th>
+                    <th>Sub Total</th>
+  
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="form-group for11div">
+              <label class="collortxtForm" for="entrega">Como deseja receber seus produtos: </label><br>
+                    <input type="radio" id="rdEntrega" name="rdEntrega" value="1">Correios<br>
+                    <input type="radio" id="rdEntrega" name="rdEntrega" value="2" checked>correios sedex
+                   
+              
+  
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group col-md-6 for12">
+                <label class="collortxtForm" for="inputPagamento">Formas de Pagamento</label>
+                <div class="form-row">
+                  <div class="col pagt">
+                    <div class="form-check">
+                      <select name="slcFormaPagto" id="slcFormaPagto">
+                        <option value="1">Transferencia</option>
+                        <option value="2">Credito</option>
+                        <option value="3">Boleto</option>
+                        <option value="4">Debito</option>
+                      </select>
+                      <br>
+                    </div>
+                  </div>
+  
+                  <label class="collortxtForm parc" for="inputNome ">Parcelas</label>
+                  <input type="text" class="form-control parc " id="Parcelas" placeholder="Parcelas">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="check">
+              <input type="checkbox" id="ckNews" class="checkbox" value="sim" checked> Eu aceito receber a newslatter
+            </div>
+  
+            <button type="button" value="Cadastrar" class="btn btn-outline-success cad"
+              onclick="salvar()">Comprar</button>
+  
+            <br>
+  
+          </form>
+  
+        </div>
+      </div>
+      <div class="formCompra2">
+        <div class="form">
+          <div class="finaliza">
+            <h1 class="title">Resumo da Compra</h1>
+            <br>
+  
+            <label>
+              <div class="collortxtForm nNome">Cliente</div>
+            </label>
+            <input type="text" class="form-control nameNome" id="txtNomeCliente" name="txtNomeCliente" readonly='readonly'
+              value="">
+  
+            <label>
+              <div class="collortxtForm ncpf">CPF</div>
+            </label>
+            <input type="text" class="form-control namecpf" id="txtCpf" name="txtCpf" readonly='readonly' value="">
+  
+            <label>
+              <div class="collortxtForm nPagto">Forma pagamento</div>
+            </label>
+            <input type="text" class="form-control namePagto" id="txtFormaSelec" name="txtFormaSelec" readonly='readonly'
+              value="">
+  
+            <label>
+              <div class="collortxtForm nEntrega">Entrega selecionada</div>
+            </label>
+            <input type="text" id="txtEntregaSelec" name="txtEntregaSelec" readonly='readonly' value="''">
+  
+            <label>
+              <div class="collortxtForm nParcela">Valor Parcelas</div>
+            </label>
+            <input type="text" class="form-control nameParcela" id="valorParcelas" name="valorParcelas"
+              readonly='readonly' value="">
+  
+            <label>
+              <div class="collortxtForm nVenda">Total venda</div>
+            </label>
+            <input type="text" class="form-control nameVenda" id="txtValorTotal" name="txtValorTotal" readonly='readonly'
+              value="">
+            <br>
+  
+  
+  
+  
+  
+  
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+  
+    </div>
+  
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
